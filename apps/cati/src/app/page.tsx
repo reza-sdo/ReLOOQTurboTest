@@ -6,6 +6,7 @@ export default function Home() {
       <h1>this is one change</h1>
       <h2>this is second change</h2>
       <p>this is pashmom !</p>
+      <h1>in khili change </h1>
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <Image
           className="dark:invert"
