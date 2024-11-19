@@ -25,16 +25,11 @@ export default function Home() {
   const api = axios.create({
     baseURL: 'https://jsonplaceholder.typicode.com',
   });
-  const data = useQuery({
-    queryKey: ['test'],
-    queryFn: async () => {
-      const { data } = await api.get('/todos/1');
-      return data;
-    },
-    gcTime: 0,
-  });
 
-  console.log(data.data);
+  const data = useQuery({
+    queryKey: ['s'],
+    queryFn: () => {},
+  });
 
   return (
     <div className={styles.page}>

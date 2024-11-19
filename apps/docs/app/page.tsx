@@ -22,12 +22,8 @@ const ThemeImage = (props: Props) => {
 
 export default function Home() {
   const a = useQuery({
-    queryKey: ['aa'],
-    queryFn: () => {
-      return 'mms';
-    },
-    cacheTime: 0,
-  });
+
+  })
   return (
     <div className={styles.page}>
       {add(1, 3)}
