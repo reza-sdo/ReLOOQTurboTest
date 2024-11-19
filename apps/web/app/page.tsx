@@ -1,8 +1,11 @@
-import Image, { type ImageProps } from "next/image";
-import { Button } from "@repo/ui/button";
-import styles from "./page.module.css";
+'use client';
+import Image, { type ImageProps } from 'next/image';
+import { Button } from '@repo/ui/button';
+import styles from './page.module.css';
+import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
 
-type Props = Omit<ImageProps, "src"> & {
+type Props = Omit<ImageProps, 'src'> & {
   srcLight: string;
   srcDark: string;
 };
@@ -19,9 +22,27 @@ const ThemeImage = (props: Props) => {
 };
 
 export default function Home() {
+  const api = axios.create({
+    baseURL: 'https://jsonplaceholder.typicode.com',
+  });
+  const data = useQuery({
+    queryKey: ['test'],
+    queryFn: async () => {
+      const { data } = await api.get('/todos/1');
+      return data;
+    },
+    gcTime: 0,
+  });
+
+  console.log(data.data);
+
   return (
     <div className={styles.page}>
-      <main className={styles.main}>
+      {/* {data.isLoading ? <p>loading...</p> : 
+      
+      
+      } */}
+      {/* <main className={styles.main}>
         <ThemeImage
           className={styles.logo}
           srcLight="turborepo-dark.svg"
@@ -96,7 +117,7 @@ export default function Home() {
           />
           Go to turbo.build →
         </a>
-      </footer>
+      </footer> */}
     </div>
   );
 }

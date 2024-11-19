@@ -1,8 +1,10 @@
-import Image, { type ImageProps } from "next/image";
-import { Button } from "@repo/ui/button";
-import styles from "./page.module.css";
+import Image, { type ImageProps } from 'next/image';
+import { Button } from '@repo/ui/button';
+import styles from './page.module.css';
+import { add } from '@repo/math/add';
+import { useQuery } from '@tanstack/react-query';
 
-type Props = Omit<ImageProps, "src"> & {
+type Props = Omit<ImageProps, 'src'> & {
   srcLight: string;
   srcDark: string;
 };
@@ -19,9 +21,17 @@ const ThemeImage = (props: Props) => {
 };
 
 export default function Home() {
+  const a = useQuery({
+    queryKey: ['aa'],
+    queryFn: () => {
+      return 'mms';
+    },
+    cacheTime: 0,
+  });
   return (
     <div className={styles.page}>
-      <main className={styles.main}>
+      {add(1, 3)}
+      {/* <main className={styles.main}>
         <ThemeImage
           className={styles.logo}
           srcLight="turborepo-dark.svg"
@@ -96,7 +106,7 @@ export default function Home() {
           />
           Go to turbo.build →
         </a>
-      </footer>
+      </footer> */}
     </div>
   );
 }
